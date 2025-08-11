@@ -16,7 +16,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));
+app.use(cors({
+  origin: process.env.FRONTEND_URL?.split(",") || ["http://localhost:5173"],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
