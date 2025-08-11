@@ -1,0 +1,24 @@
+{
+  "name": "whatsapp-clone-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+   "type": "module",
+  "scripts": {
+    "seed": "node utils/processPayloads.js",
+    "start" : "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "moment": "^2.30.1",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  }
+}
