@@ -16,11 +16,21 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+const allowedOrigins = [
+  "https://whatsapp-clone12.vercel.app",
+  "http://localhost:5173"
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL?.split(",") || ["http://localhost:5173"],
-  methods: ["GET", "POST"],
-  credentials: true
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  }
 }));
+
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -79,6 +89,8 @@ app.get("/health", (req, res) => {
     uptime: process.uptime()
   });
 });
+
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
